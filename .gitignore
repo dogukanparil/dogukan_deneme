@@ -1,129 +1,50 @@
-# Byte-compiled / optimized / DLL files
-__pycache__/
-*.py[cod]
-*$py.class
+import pandas as pd
+from matplotlib import pyplot as plt
+import numpy as np
+from matplotlib import colors
+from matplotlib.ticker import PercentFormatter
+df = pd.read_excel(r'C:\Users\Dparil\Desktop\Book1.xlsx')
+print(df.describe())
+print(df.head())
 
-# C extensions
-*.so
+df.rename(columns={'Traffic': 'T', 'Customers': 'C'}, inplace=True)
 
-# Distribution / packaging
-.Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-pip-wheel-metadata/
-share/python-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
-MANIFEST
+# Creating histogram
+df.hist()
+plt.show()
 
-# PyInstaller
-#  Usually these files are written by a python script from a template
-#  before PyInstaller builds the exe, so as to inject date/other infos into it.
-*.manifest
-*.spec
+print(df.head())
 
-# Installer logs
-pip-log.txt
-pip-delete-this-directory.txt
+# New Data imported
+df_v2 = pd.read_excel(r'C:\Users\Dparil\Desktop\Monthly PV - Customer Data_.xlsx', sheet_name= 'Sheet2')
+print(df_v2)
+print(df_v2.head())
 
-# Unit test / coverage reports
-htmlcov/
-.tox/
-.nox/
-.coverage
-.coverage.*
-.cache
-nosetests.xml
-coverage.xml
-*.cover
-*.py,cover
-.hypothesis/
-.pytest_cache/
+# Filtering columns
+a = df_v2.groupby('BuyCategory')
+a.head()
+print(df_v2)
+df_v3 = pd.DataFrame(df)
+print(df_v3)
+filt = df['Category'] == 'Altın Mağazası'
+print(df[~filt])
 
-# Translations
-*.mo
-*.pot
+# Dividing columns by 1000 and drawing histogram
+print(df_v2)
+df_v2['Product View'] = df_v2['Product View'].div(1000).round(2)
+print(df_v2)
 
-# Django stuff:
-*.log
-local_settings.py
-db.sqlite3
-db.sqlite3-journal
+# Creating histogram
+df_v2.hist()
+plt.show()
 
-# Flask stuff:
-instance/
-.webassets-cache
+# 32 Adet Row ile Yapılan Çalışma
+df.rename(columns={'Product View': 'PV', 'Customer': 'C'}, inplace=True)
+print(df)
+df['C'] = df['C'].div(1000000).round(2)
+print(df)
+df['PV'] = df['PV'].div(1000000).round(2)
+print(df)
 
-# Scrapy stuff:
-.scrapy
-
-# Sphinx documentation
-docs/_build/
-
-# PyBuilder
-target/
-
-# Jupyter Notebook
-.ipynb_checkpoints
-
-# IPython
-profile_default/
-ipython_config.py
-
-# pyenv
-.python-version
-
-# pipenv
-#   According to pypa/pipenv#598, it is recommended to include Pipfile.lock in version control.
-#   However, in case of collaboration, if having platform-specific dependencies or dependencies
-#   having no cross-platform support, pipenv may install dependencies that don't work, or not
-#   install all needed dependencies.
-#Pipfile.lock
-
-# PEP 582; used by e.g. github.com/David-OConnor/pyflow
-__pypackages__/
-
-# Celery stuff
-celerybeat-schedule
-celerybeat.pid
-
-# SageMath parsed files
-*.sage.py
-
-# Environments
-.env
-.venv
-env/
-venv/
-ENV/
-env.bak/
-venv.bak/
-
-# Spyder project settings
-.spyderproject
-.spyproject
-
-# Rope project settings
-.ropeproject
-
-# mkdocs documentation
-/site
-
-# mypy
-.mypy_cache/
-.dmypy.json
-dmypy.json
-
-# Pyre type checker
-.pyre/
+df.hist()
+plt.show()
