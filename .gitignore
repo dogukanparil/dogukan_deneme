@@ -3,7 +3,7 @@ from matplotlib import pyplot as plt
 import numpy as np
 from matplotlib import colors
 from matplotlib.ticker import PercentFormatter
-df = pd.read_excel(r'C:\Users\Dparil\Desktop\Book1.xlsx')
+df = pd.read_excel(r'C:\Users\yyy\xxx\zzz.xlsx')
 print(df.describe())
 print(df.head())
 
